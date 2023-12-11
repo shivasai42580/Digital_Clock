@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        @import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+        *{
+            margin: 0;
+            padding:0;
+        }
+        body{
+            background-image: url(https://plus.unsplash.com/premium_photo-1661699082515-24e99b178ff7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW50ZXJpb3IlMjB3YWxsfGVufDB8fDB8fHww);
+            background-size: 100vw 100vh;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+        .container{
+            width:30%;
+            height:30vh;
+            border:30px solid gray;
+            background-color: black;
+            color:white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: absolute;
+            font-family:'Orbitron',sans-serif;
+        }
+        #day{
+            font-size: 50px;
+        }
+        #time{
+            font-size: 70px ;
+        }
+        #sec{
+            font-size: 150px;
+            color:rgba(255, 255, 255, 0.317);
+            z-index: 10;
+            font-family:'Orbitron',sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="day">THURSDAY</h1>
+        <!-- <h1 id="noon">MORNING</h1> -->
+        <h1 id="time">13:51 PM</h1>
+        <h1 id="date">NOVEMBER 30,2023</h1>  
+    </div>
+    <h1 id="sec">50</h1>
+    <script>
+        function clock(){
+            let date=new Date();
+            let h=date.getHours();
+            
+            
+            let h2=(h>12)?(h-12):h;
+            let h3=h2<10?"0"+h2:h2;
+            
+           
+            let am_pm=(h>=12)?"PM":"AM";
+            let m=date.getMinutes();
+            let m1=(m<10)?("0"+m):m;
+            let s=date.getSeconds();
+            let s1=(s<10)?("0"+s):s;
+            let day=date.getDay();
+            let arrDay=["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+            let month=date.getMonth();
+            let arrMonth=["JANUARY","FERUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+            let d=date.getDate();
+            let year=date.getFullYear();
+
+            document.getElementById("time").innerHTML=`${h3}:${m1} ${am_pm}`;
+            document.getElementById("sec").innerHTML=`${s1}`;
+
+            document.getElementById("date").innerHTML=`${arrMonth[month]}  ${d} , ${year}`
+            document.getElementById("day").innerHTML=`${arrDay[day]}`
+        }
+        clock();
+
+        setInterval(()=>{
+            clock()
+        },1000)
+    </script>
+</body>
+</html>
